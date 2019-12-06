@@ -29,7 +29,8 @@ RUN pip install --upgrade pip \
     && pip install matplotlib \
     && pip install Pillow \
     && pip install ipython[all] \
-    && pip install jupyter
+    && pip install jupyter \
+    && pip install beautifulsoup4
 
     
 WORKDIR /workdir

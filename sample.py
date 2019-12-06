@@ -1,8 +1,8 @@
 import tinpy
 from tinpy import getAccessToken
 
-FBemail = "Facebook e-mail address"
-FBpass = "Facebook password"
+FBemail = ""
+FBpass = ""
 
 token = getAccessToken(FBemail, FBpass)
 api = tinpy.API(token)
