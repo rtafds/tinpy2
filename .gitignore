@@ -8,5 +8,5 @@ data/
 .ipynb_checkpoints/
 
 individual/
-keys.py
+indkeys.py
 
