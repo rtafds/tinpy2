@@ -1,2 +1,0 @@
-FBemail = "Facebookのメールアドレス"
-FBpass = "Facebookのパスワード"
