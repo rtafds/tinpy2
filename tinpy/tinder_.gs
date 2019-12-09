@@ -1,5 +1,6 @@
-sheetId = "1iLhX7eFxU0VV9Wh5fhtJSolIGaDUoU9w_nYS2wa0-d0";
-folderId = "1YtgSsYV4f3GFffohcKnF2gAATtyTGke1";
+sheetId = "スプレッドシートのID";
+folderId = "DriveのフォルダのID";
+
 
 //スワイプしたプロフィールの情報を記録する
 function doPost(e) {

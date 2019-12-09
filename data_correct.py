@@ -1,17 +1,24 @@
-#%%
 import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), './tinpy'))
 
-import time
-import random
 from tinpy import tinder
 from tinpy.accessToken import getAccessToken
 from indkeys import *
-#%%
-break_time = 300
-nope_rate = 0.0
+import requests
+import json
+
+
+url = "https://script.google.com/macros/s/AKfycbyFKJsT0MRGG_A3h_E16vAX6Zc45zvFkbx7xd6RXZqBi8owi-n9/exec"
+token = tinpy.getAccessToken(FBemail, FBpass)
+#token = "Facebookのアクセストークン"
+
+
+api = tinder.API(token)
+
+api.setLocation(35.658034, 139.701636)
+
 
 def sendProfile(user):
     data = {"id": user.id, "name": user.name,
@@ -26,33 +33,23 @@ def sendProfile(user):
     with requests.Session() as s:
         s.post(url, data=data)
 
-token = getAccessToken(FBemail, FBpass)
-api = tinder.API(token)
 
-# This is the latitude and the longitude of Shibuya Tokyo Japan.
+def sendMatch(match):
+    with requests.Session() as s:
+        data = {"id": match.id}
+        s.get(url, params=data)
 
-Nagoya = (35.181451, 136.906557)
-Shibuya = (35.658034, 139.701636)
-Sapporo = (43.061771, 141.354451)
-Sendai = (38.268195, 140.869418)
-Osaka = (34.693725, 135.502254)
-Fukuoka = (33.590184, 130.401689)
-Okinawa = (26.120191, 127.702501)
 
-lat, lon = Nagoya
-api.setLocation(lat, lon)
-
-start_time = time.time()
 for user in api.getNearbyUsers():
-    process_time = time.time() - start_time
-    if process_time > break_time:
-        break
-
     if api.getLikesRemaining() == 0:
         break
-
-    if random.random() < nope_rate:
-        user.nope()
-    else:
-        user.like()
+    user.like()
     sendProfile(user)
+
+for match in api.getMatch():
+    sendMatch(match)
+    messages = match.messages
+    if len(messages) == 0:
+        match.sendMessage(
+            "はじめまして{0}さん！ マッチありがとうございます！".format(match.name))
+
