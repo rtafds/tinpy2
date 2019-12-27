@@ -6,9 +6,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), './tinpy'))
 
 import time
 import random
+import requests
+import json
+import datetime
+import copy
 from tinpy import tinder
 from tinpy.accessToken import getAccessToken
 from indkeys import *
+
 #%%
 break_time = 300
 nope_rate = 0.0

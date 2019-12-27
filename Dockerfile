@@ -30,7 +30,8 @@ RUN pip install --upgrade pip \
     && pip install Pillow \
     && pip install ipython[all] \
     && pip install jupyter \
-    && pip install beautifulsoup4
+    && pip install beautifulsoup4 \
+    && pip install requests
 
     
 WORKDIR /workdir
